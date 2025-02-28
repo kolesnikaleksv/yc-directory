@@ -4,8 +4,10 @@ import { STARTUP_BY_ID_QUERY } from '@/sanity/lib/queries';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import React from 'react';
+import { Suspense } from 'react';
 import markdownit from 'markdown-it';
+import { Skeleton } from '@/components/ui/skeleton';
+import View from '@/components/View';
 
 export const experimental_ppr = true;
 const md = markdownit({
@@ -30,11 +32,6 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <p className="sub-heading !max-w-5xl">{post?.description}</p>
       </section>
       <section className="section_container">
-        {/* <img
-          src={post?.image}
-          alt="thumbnail"
-          className="w-full h-auto rounded-xl"
-        /> */}
         <Image
           src={post?.image}
           alt="thumbnail"
@@ -73,6 +70,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
           )}
         </div>
         <hr className="divider" />
+        {/* TODO: EDITOR SELECTED STARTUPS */}
+        <Suspense fallback={<Skeleton className="view_skeleton" />}>
+          <View id={id} />
+        </Suspense>
       </section>
     </>
   );
