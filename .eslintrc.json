@@ -1,3 +1,20 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  // How to remove red underline from unused varables
+  //       example 1
+  // "typescript.showUnused": false,
+  // "javascript.showUnused": false,
+  //       example 2
+  // "compilerOptions": {
+  //   "noUnusedLocals": false,
+  //   "noUnusedParameters": false
+  // }
+  //       example 3
+  // "no-unused-vars": "warn"
+  //       example 4
+  "no-unused-vars": "off",
+  "@typescript-eslint/no-unused-vars": [
+    "error",
+    { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
+  ]
 }
